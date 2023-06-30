@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-258c9d36-ba07-402b-a2ee-8d63df2abdde" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800.03">
+  <defs>
+    <style>
+      .uuid-b5209df8-9577-4dd6-8fd4-0f9c49a57146 {
+        fill: none;
+        stroke: #fce3bf;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 80px;
+      }
+    </style>
+  </defs>
+  <g id="uuid-95a8430b-caa9-4bba-bbab-ecb82081bf95" data-name="Free-Icons">
+    <g id="uuid-b94fe593-40bd-4cbd-a0c5-1679218606ed" data-name="Group">
+      <g id="uuid-1a36b7b2-76e4-49a8-9287-be894b88ff3b" data-name="Shape">
+        <path class="uuid-b5209df8-9577-4dd6-8fd4-0f9c49a57146" d="m600,400.03l-199.97,199.97-204.45-199.97m204.45,199.9V40"/>
+        <line class="uuid-b5209df8-9577-4dd6-8fd4-0f9c49a57146" x1="40" y1="760.03" x2="760" y2="760.03"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #B87647;
+    color: #571B09;
+    font-family: 'Jua', sans-serif;
+    /*letter-spacing: 0.05em;*/
+}
+
+.standard-component {
+    border: 2px solid #BB925D;
+    border-radius: 35px;
+    background-color: #FDEFD9;
+}
+
+input[type='text'],
+input[type='password'],
+textarea,
+select {
+    background-color: #F2DAB5;
+    border: 1px solid #BB925D;
+    border-radius: 20px;
+    padding: 5px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 16px;
+    color: #571B09;
+}
+
+.landingWrapper {
+    /*background-image: url('../assets/habitTile.webp');*/
+    min-height: 100vh;
+    /*background-repeat: repeat;*/
+    /*background-size: 750px;*/
+    background-color: #F2DAB5;
+
+}
+
+/*.sign-up-container,*/
+/*.sign-in-container {*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    width: 100%;*/
+/*}*/
+
+
+/*button {*/
+/*    letter-spacing: 0.05em;*/
+/*}*/
+
+
+/*.form-day-btn {*/
+/*    display: inline-flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    border: 2px solid #BB925D;*/
+/*    border-radius: 50%;*/
+/*    padding: 0.4em;*/
+/*    margin: 0.4em;*/
+/*    background-color: #FCE9CA;*/
+/*    font-size: 1.2em;*/
+/*    cursor: pointer;*/
+/*    width: 1.8em;*/
+/*    height: 1.8em;*/
+/*}*/
+
+/*.form-day-btn.selected {*/
+/*    color: #571B09;*/
+/*    font-weight: bold;*/
+/*    border: 4px solid #BB925D;*/
+/*}*/
+
+
+
+
+
+
+
+/*.complete-today-btn {*/
+/*    background-color: #FCE9CA;*/
+/*    border: 2px solid #BB925D;*/
+/*    width: 40px;*/
+/*    height: 40px;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    color: transparent;*/
+/*}*/
+
+/*.complete-today-btn:hover {*/
+/*    transform: scale(1.05);*/
+/*}*/
+
+/*.complete-today-btn:active {*/
+/*    transform: scale(0.95);*/
+/*}*/
+
+/*@keyframes loading {*/
+/*    0%   { cy: 28; }*/
+/*    25%  { cy: 16; }*/
+/*    50%  { cy: 28; }*/
+/*}*/
+
+/*.complete-today-btn.loading {*/
+/*    background-color: #EECFA0;*/
+/*    transform: scale(0.95);*/
+/*    border-color: #BB925D;*/
+/*    --custom-ring-color: #BB925D;*/
+/*    --custom-ring-width: 6px;*/
+/*    box-shadow:*/
+/*            0 0 0 3px #FDEFD9,*/
+/*            0 0 2px var(--custom-ring-width) var(--custom-ring-color)*/
+/*;*/
+/*    transition: background-color 1.6s ease, box-shadow 0.1s ease;*/
+/*}*/
+
+/*.loadingCircle {*/
+/*    fill: transparent;*/
+/*    animation-duration: 0.7s;*/
+/*    animation-iteration-count: infinite;*/
+/*    animation-name: loading;*/
+/*    cy: 28;*/
+/*}*/
+
+/*.loadingCircle:nth-child(2) { animation-delay: .8s }*/
+/*.loadingCircle:nth-child(3) { animation-delay: .16s }*/
+
+/*.complete-today-btn.loading .loadingCircle {*/
+/*    fill: #571B09;*/
+/*}*/
+
+/*.complete-today-btn.completed {*/
+/*    background-color: #FADDAD;*/
+/*    color: #571B09;*/
+/*    font-weight: bold;*/
+/*    border: 3px solid #BB925D;*/
+/*    font-size: 1.3em;*/
+/*}*/
+
+/*@media (max-width: 380px) {*/
+/*    .week-column-6 {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 380px) {*/
+/*    .week-column-6 {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 367px) {*/
+/*    .week-column-13 {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 353px) {*/
+/*    .week-column-20 {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+
+/*@media (max-width: 341px) {*/
+/*    .week-column-27 {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*.react-datepicker{*/
+/*    background-color: #FDEFD9 !important;*/
+/*    border-radius: 18px !important;*/
+/*    border-color: #BB925D !important;*/
+/*    font-family: 'Itim', cursive !important;*/
+/*}*/
+
+/*.react-datepicker__header {*/
+/*    background-color: #EECFA0 !important;*/
+/*    border-top-left-radius: 18px !important;*/
+/*    border-top-right-radius: 18px !important;*/
+/*    border-color: #BB925D !important;*/
+/*}*/
+
+/*.react-datepicker__day-name {*/
+/*    color: #571B09 !important;*/
+/*}*/
+
+/*.react-datepicker__day {*/
+/*    color: #571B09 !important;*/
+/*}*/
+
+/*.react-datepicker__day--disabled {*/
+/*    color: #DECAB0 !important;*/
+/*}*/
+
+
+/*.react-datepicker__current-month {*/
+/*    color: #571B09 !important;*/
+/*    font-size: 1.125rem !important;*/
+/*    line-height: 1.75rem !important;*/
+/*    padding-bottom: 0.25rem !important;*/
+/*    !* font-weight: 900  !important; *!*/
+/*}*/
+
+
+/*.react-datepicker__navigation-icon::before{*/
+/*    border-color: #571B09 !important;*/
+/*    width: 12px !important;*/
+/*    height: 12px !important;*/
+/*    top: 12px !important;*/
+/*}*/
+
+/*.react-datepicker__triangle{*/
+/*    background-color: #EECFA0 !important;*/
+/*}*/
+
+
+
+/*.react-datepicker__day--selected {*/
+/*    background-color: #A16840 !important;*/
+/*    color: #FCE3BF !important;*/
+/*}*/
+
+/*.react-datepicker__day--keyboard-selected{*/
+/*    background-color: #FDEFD9 !important;*/
+/*}*/
+
+/*.react-datepicker__triangle {*/
+/*    display: none;*/
+/*}*/

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-27562bad-bca1-4bd6-8175-f42bd1c75afa" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 94 108">
+  <defs>
+    <style>
+      .uuid-31f8b016-e836-4a29-aca5-56a7650e27d5 {
+        clip-path: url(#uuid-903e0852-5f9c-4f75-8e8a-9814ccbbc219);
+      }
+
+      .uuid-f58fd8dd-2479-416a-92be-0c1f65b59589 {
+        stroke: #876233;
+        stroke-width: 2px;
+      }
+
+      .uuid-f58fd8dd-2479-416a-92be-0c1f65b59589, .uuid-ae14910b-3352-4b9a-aaa2-ad6957d0f590 {
+        fill: none;
+      }
+
+      .uuid-0fbb2a19-2c6d-4d20-a5ce-0cb9af9b3a1b {
+        fill: #b87647;
+      }
+
+      .uuid-9c59a556-e754-45ef-9b5c-db2ba3ec2840 {
+        fill: #f2dab5;
+      }
+    </style>
+    <clipPath id="uuid-903e0852-5f9c-4f75-8e8a-9814ccbbc219">
+      <rect class="uuid-ae14910b-3352-4b9a-aaa2-ad6957d0f590" x="-.8" y="-1.9" width="95" height="110"/>
+    </clipPath>
+  </defs>
+  <g class="uuid-31f8b016-e836-4a29-aca5-56a7650e27d5">
+    <g>
+      <path class="uuid-0fbb2a19-2c6d-4d20-a5ce-0cb9af9b3a1b" d="m38.22,70.21v-3.58c-.31-30.4-33.9-28.83-34.26-28.9H-.8V-.62h95v102.62s-5.86,0-5.86,0c-53.15-.27-50.12-31.79-50.12-31.79Z"/>
+      <path class="uuid-9c59a556-e754-45ef-9b5c-db2ba3ec2840" d="m3.96,38.74c.36.06,33.95-1.5,34.26,28.9v3.58s-3.02,31.51,50.12,31.79h5.85s0,18.68,0,18.68H-.11V38.74s4.06,0,4.06,0Z"/>
+    </g>
+    <path class="uuid-f58fd8dd-2479-416a-92be-0c1f65b59589" d="m-.11,38.74H3.96c.36.06,33.95-1.5,34.26,28.9v3.58s-3.02,31.51,50.12,31.79h5.85"/>
+  </g>
+</svg>

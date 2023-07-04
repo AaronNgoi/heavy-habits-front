@@ -45,6 +45,26 @@ export const HabitsProvider = ({ children }) => {
         }
     };
 
+    const handleCombinedUpdate = async (updatedHabit) => {
+        const userId = auth.currentUser.uid;
+        const habitRef = doc(db, 'users', userId, 'habits', updatedHabit.id);
+
+        try {
+            await updateDoc(habitRef, {
+                habit_name: updatedHabit.habit_name,
+                habit_subtext: updatedHabit.habit_subtext,
+                repeat_option: updatedHabit.repeat_option,
+                repeat_days: updatedHabit.repeat_days,
+                repeat_times: updatedHabit.repeat_times,
+                completed_dates: updatedHabit.completed_dates,
+                expected_dates: updatedHabit.expected_dates,
+            });
+            navigate('/home');  // navigate back home only if the update was successful
+        } catch (error) {
+            console.error("Error updating habit to Firestore", error);
+        }
+    };
+
 
     useEffect(() => {
         const fetchHabits = () => {
@@ -75,7 +95,7 @@ export const HabitsProvider = ({ children }) => {
     }, []);
 
     return (
-        <HabitsContext.Provider value={{ habits, habitsCount, handleUpdate, handleUpdateCompletedExpectedDates }}>
+        <HabitsContext.Provider value={{ habits, habitsCount, handleUpdate, handleUpdateCompletedExpectedDates, handleCombinedUpdate }}>
             {children}
         </HabitsContext.Provider>
     );

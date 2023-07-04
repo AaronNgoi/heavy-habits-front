@@ -208,6 +208,17 @@ select {
     display: none;
 }
 
+.below-lg-hidden {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .below-lg-hidden {
+        display: flex;
+    }
+}
+
+
 
 /*@media (max-width: 380px) {*/
 /*    .week-column-6 {*/

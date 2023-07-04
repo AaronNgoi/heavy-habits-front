@@ -4,11 +4,11 @@ import Header from '../components/Header';
 import HabitForm from '../components/HabitForm';
 import { useHabits } from '../context/HabitsContext';
 import BackIcon from '../assets/back_icon.svg';
-// import recalculateExpectedDatesForHabit from '../helpers/recalculateExpectedDatesForHabit';
+import recalculateAllExpectedAndCompletedDates from '../helpers/recalculateAllExpectedAndCompletedDates';
 import PageWrapper from '../components/PageWrapper';
 
 const EditHabitPage = () => {
-    const { habits, handleUpdate } = useHabits();
+    const { habits, handleCombinedUpdate } = useHabits();
     const { id } = useParams();
 
     const habitToEdit = habits.find((habit) => habit.id === id);
@@ -21,10 +21,10 @@ const EditHabitPage = () => {
     const handleUpdateHabit = (formData) => {
         let updatedTimesPerWeek = formData.timesPerWeek;
         if (formData.repeat_option === 'Weekly' && !updatedTimesPerWeek.length) {
-            updatedTimesPerWeek = "1"; // Set default value to 1 if timesPerWeek is an empty array
+            updatedTimesPerWeek = "1";
         }
 
-        const updatedHabitData = {
+        let updatedHabitData = {
             ...habitToEdit,
             habit_name: formData.habitName,
             habit_subtext: formData.habitSubtext,
@@ -37,16 +37,16 @@ const EditHabitPage = () => {
         const hasChanged = relevantProperties.some(prop => habitToEdit[prop] !== updatedHabitData[prop]);
 
         if (hasChanged) {
-            // const habitWithRecalculatedExpectedDates = recalculateExpectedDatesForHabit(updatedHabitData);
-            // handleUpdate(habitWithRecalculatedExpectedDates);
-            console.log("hasChanged", hasChanged)
-            handleUpdate(updatedHabitData);
-            navigate('/');
-        } else {
-            handleUpdate(updatedHabitData);
-            console.log("hasChanged", hasChanged)
-            navigate('/');
+            const recalculatedData = recalculateAllExpectedAndCompletedDates(updatedHabitData);
+            updatedHabitData = {
+                ...updatedHabitData,
+                expected_dates: recalculatedData.expected_dates,
+                completed_dates: recalculatedData.completed_dates
+            };
         }
+
+        // Call the combined update function
+        handleCombinedUpdate(updatedHabitData);
     };
 
 

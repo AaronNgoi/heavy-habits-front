@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" id="uuid-38866212-f08a-401d-b658-151c4167afaf" data-name="uuid-27562bad-bca1-4bd6-8175-f42bd1c75afa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 108">
+  <defs>
+    <style>
+      .uuid-cdcee441-1d26-44b9-89a6-6d172851c0e1 {
+        fill: #876233;
+      }
+
+      .uuid-bb5d4626-88d1-42d7-81ec-04e724582ab8 {
+        fill: #b87647;
+      }
+
+      .uuid-2bf9b98e-8f55-4961-83d9-b6974e2f8330 {
+        fill: #f2dab5;
+      }
+    </style>
+  </defs>
+  <rect class="uuid-cdcee441-1d26-44b9-89a6-6d172851c0e1" y="37.7" width="80" height="2"/>
+  <rect class="uuid-bb5d4626-88d1-42d7-81ec-04e724582ab8" y="0" width="80" height="37.7"/>
+  <rect class="uuid-2bf9b98e-8f55-4961-83d9-b6974e2f8330" y="39.7" width="80" height="68.3"/>
+</svg>

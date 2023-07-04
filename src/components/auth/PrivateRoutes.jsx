@@ -5,6 +5,7 @@ import LoadingPage from "../../pages/LoadingPage";
 import PetDisplay from "../PetDisplay";
 import {HabitsProvider} from "../../context/HabitsContext";
 import HabitInfoMoreOptionsContext from "../../context/HabitInfoMoreOptionsContext";
+import BottomNav from "../BottomNav";
 
 
 const PrivateRouteLayout = ({children}) => (
@@ -12,6 +13,7 @@ const PrivateRouteLayout = ({children}) => (
         <div className="bg-brown-pet-bg relative h-44"> </div>
         <PetDisplay/>
         {children}
+        <BottomNav/>
     </div>
 );
 

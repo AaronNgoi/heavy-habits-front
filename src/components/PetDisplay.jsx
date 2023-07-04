@@ -2,6 +2,7 @@ import React from 'react';
 import LeftHeader from '../assets/PetDLeft.svg';
 import MiddleHeader from '../assets/PetDMid.svg';
 import RightHeader from '../assets/PetDRight.svg';
+import OuterHeader from '../assets/PetDOuter.svg';
 import Mascot from '../assets/Mascot.svg';
 
 const PetDisplay = () => (
@@ -9,9 +10,11 @@ const PetDisplay = () => (
     <div className="relative w-full h-108 -mb-1">
         <div className="absolute inset-0 flex items-center h-108">
             <div className="flex w-full h-108 bg-pet-bg">
+                <img src={OuterHeader} className="flex -mr-1 w-1/12 h-108 below-lg-hidden" alt="Outer Header" />
                 <img src={LeftHeader} className="flex -mr-1  h-108" alt="Left Header" />
                 <img src={MiddleHeader} className=" flex-grow w-1/12 h-108" alt="Middle Header" />
                 <img src={RightHeader} className="flex -ml-1  h-108" alt="Right Header" />
+                <img src={OuterHeader} className="flex -ml-1 w-1/12  h-108 below-lg-hidden" alt="Outer Header" />
                 <div className="absolute inset-0 flex items-center justify-center">
                     <img src={Mascot} alt="Mascot" className="h-108" />
                 </div>

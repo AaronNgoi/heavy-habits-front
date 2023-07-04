@@ -4,13 +4,13 @@ import { doc, updateDoc } from 'firebase/firestore';  // new import statements
 
 
 import { getCurrentDateInUserTimezone } from '../utils/dateUtils';
-// import ExpandedHabitInfo from './components/ExpandedHabitInfo';
 import summonConfetti from '../utils/summonConfetti';
 import tick from '../assets/tickfat.svg';
 
 
 import HabitInfoNameSubtext from "./HabitInfoNameSubtext";
 import HabitInfoMoreOptions from "./HabitInfoMoreOptions";
+import ExpandedHabitInfo from "./ExpandedHabitInfo";
 
 
 const HabitInfo = ({ habit, expanded }) => {
@@ -101,10 +101,10 @@ const HabitInfo = ({ habit, expanded }) => {
 
 
     return (
-        <div className={`standard-component relative flex flex-col items-stretch py-2 px-2 ${isCompleted ? 'completed-bg' : ''}`}>
-            <div className="flex items-center justify-between flex-grow">
+        <div className={`standard-component relative flex flex-col items-stretch py-2 px-2 ${(isCompleted && !expanded) ? 'completed-bg' : ''}`}>
+            <div className="flex items-center justify-between ">
                 <div className="flex items-center space-x-3 whitespace-nowrap overflow-hidden overflow-ellipsis">
-                    <div className="-mr-1">
+                    <div className="-mr-1 flex-shrink-0">
                         <HabitInfoMoreOptions
                             habit={habit}
                         />
@@ -133,7 +133,7 @@ const HabitInfo = ({ habit, expanded }) => {
                     </button>
                 </div>
             </div>
-            {/*{expanded && <ExpandedHabitInfo habit = {habit} />}*/}
+            {expanded && <ExpandedHabitInfo habit = {habit} />}
         </div>
     );
 };

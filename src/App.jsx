@@ -19,6 +19,9 @@ import PetDisplay from "./components/PetDisplay";
 import NewHabitPage from "./pages/NewHabitPage";
 import EditHabitPage from "./pages/EditHabitPage";
 import AddHistoricalRecordPage from "./pages/AddHistoricalRecordPage";
+import ReportWeekPage from "./pages/ReportWeekPage";
+import ReportMonthPage from "./pages/ReportMonthPage";
+import SettingsPage from "./pages/SettingsPage";
 // import useLocalStorage from './hooks/useLocalStorage';
 // import AddHistoricalRecordPage from './pages/AddHistoricalRecordPage';
 // import ReorderHabitsPage from './pages/ReorderHabitsPage';
@@ -63,15 +66,20 @@ function App() {
                       <Route path="/habit/new" element={<NewHabitPage />} />
                       <Route path="/habit/:id/edit" element={<EditHabitPage />} />
                       <Route path="/habit/:id/addRecord" element={<AddHistoricalRecordPage />} />
+                      <Route path="/reportWeek" element={<ReportWeekPage />} />
+                      <Route path="/reportMonth" element={<ReportMonthPage />} />
+                      <Route path="/settings" element={<SettingsPage/>
+                      } />
+
                   </Route>
 
 
                 {/*<Route exact path="/" element={<HomePage />} />*/}
 
 
+
                 {/*<Route path="/reorderHabits" element={<ReorderHabitsPage />} />*/}
-                {/*<Route path="/reportWeek" element={<ReportWeekPage />} />*/}
-                {/*<Route path="/reportMonth" element={<ReportMonthPage />} />*/}
+
               </Routes>
             </div>
           </Router>

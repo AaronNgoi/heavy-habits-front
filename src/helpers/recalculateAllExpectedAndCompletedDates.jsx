@@ -1,7 +1,7 @@
 import { startOfWeek, endOfWeek, eachDayOfInterval, startOfDay, addDays, format, parse, eachWeekOfInterval, compareAsc } from 'date-fns';
 import { getCurrentDateInUserTimezoneDateFormat } from '../utils/dateUtils';
 
-const recalculateAllExpectedDates = (habit) => {
+const recalculateAllExpectedAndCompletedDates = (habit) => {
     const habitCreatedDate = parse(habit.habit_created_date, 'dd/MM/yyyy', new Date());
     const today = startOfDay(getCurrentDateInUserTimezoneDateFormat())
 
@@ -11,6 +11,7 @@ const recalculateAllExpectedDates = (habit) => {
     );
 
     let newExpectedDates = {};
+    let newCompletedDates = {};
 
     for (let weekStartDate  of weekIntervals) {
         const startOfWeekDate = startOfWeek(weekStartDate, { weekStartsOn: 1 });
@@ -31,6 +32,10 @@ const recalculateAllExpectedDates = (habit) => {
             // If date is before habit created date, skip to next date without calculations
             if (compareAsc(date, habitCreatedDate) === -1) {
                 continue;
+            }
+
+            if (!habit.completed_dates[dateFormatted]) {
+                habit.completed_dates[dateFormatted] = false;
             }
 
             if (habit.repeat_option === 'Ticked Days') {
@@ -66,7 +71,11 @@ const recalculateAllExpectedDates = (habit) => {
             ...habit.expected_dates,
             ...newExpectedDates,
         },
+        completed_dates: {
+            ...habit.completed_dates,
+            ...newCompletedDates,
+        },
     };
 };
 
-export default recalculateAllExpectedDates;
+export default recalculateAllExpectedAndCompletedDates;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-ae0935b4-d983-49e2-90fc-49a92abf35ed" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <style>
+      .uuid-bce7726f-999d-429c-a57b-5dd1e6edfc0b {
+        fill: none;
+        stroke: #571b09;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 66.67px;
+      }
+    </style>
+  </defs>
+  <g id="uuid-6bb6bd00-4f60-4131-a1a8-9b7372e44e36" data-name="Complete">
+    <g id="uuid-84a77c0f-7292-4892-b312-a2455c14621d" data-name="tick">
+      <polyline class="uuid-bce7726f-999d-429c-a57b-5dd1e6edfc0b" points="123.33 476.67 320 633.33 676.67 166.67"/>
+    </g>
+  </g>
+</svg>

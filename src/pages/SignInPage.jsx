@@ -10,7 +10,6 @@ const SignInPage = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-
     const signIn = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)

@@ -17,6 +17,8 @@ import {AuthProvider} from "./context/AuthContext";
 import LoadingPage from "./pages/LoadingPage";
 import PetDisplay from "./components/PetDisplay";
 import NewHabitPage from "./pages/NewHabitPage";
+import EditHabitPage from "./pages/EditHabitPage";
+import AddHistoricalRecordPage from "./pages/AddHistoricalRecordPage";
 // import useLocalStorage from './hooks/useLocalStorage';
 // import AddHistoricalRecordPage from './pages/AddHistoricalRecordPage';
 // import ReorderHabitsPage from './pages/ReorderHabitsPage';
@@ -43,12 +45,8 @@ function App() {
           <Router>
             <div className="App">
 
-                {/*<div className="bg-brown-pet-bg relative h-44"> </div>*/}
-                {/*<PetDisplay/>*/}
-
                 {/*<AuthDetails/>*/}
-              {/*<PetDisplay></PetDisplay>*/}
-              {/*<BottomNav></BottomNav>*/}
+
               <Routes>
                   {/*Public Pages*/}
                   <Route exact path="/" element={<LandingPage/>} />
@@ -59,24 +57,18 @@ function App() {
                   <Route path='*' element ={<ErrorPage404/>} />
 
 
-
                 {/*Private Pages*/}
                   <Route element={<PrivateRoutes/>}>
                       <Route path="/home" element={<HomePage/>} />
                       <Route path="/habit/new" element={<NewHabitPage />} />
-
+                      <Route path="/habit/:id/edit" element={<EditHabitPage />} />
+                      <Route path="/habit/:id/addRecord" element={<AddHistoricalRecordPage />} />
                   </Route>
-
-
-
-
 
 
                 {/*<Route exact path="/" element={<HomePage />} />*/}
 
 
-                {/*<Route path="/habit/:id/edit" element={<EditHabitPage />} />*/}
-                {/*<Route path="/habit/:id/addRecord" element={<AddHistoricalRecordPage />} />*/}
                 {/*<Route path="/reorderHabits" element={<ReorderHabitsPage />} />*/}
                 {/*<Route path="/reportWeek" element={<ReportWeekPage />} />*/}
                 {/*<Route path="/reportMonth" element={<ReportMonthPage />} />*/}

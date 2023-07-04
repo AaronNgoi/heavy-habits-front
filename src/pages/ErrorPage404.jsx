@@ -6,7 +6,7 @@ import Header from "../components/Header";
 
 const ErrorPage404 = () => {
     return (
-        <div className="landingWrapper">
+        <div className="bg-biege-background h-full min-h-screen">
             <div className="bg-brown-pet-bg relative h-44"> </div>
             <PetDisplay/>
             <Header text='404 ERROR!' />

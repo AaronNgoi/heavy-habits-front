@@ -20,29 +20,6 @@ const HabitInfo = ({ habit, expanded }) => {
 
 
 
-    // const handleComplete = () => {
-    //     const completed_dates = habit.completed_dates || {};
-    //     const today = formatDate(new Date());
-    //
-    //     if (!completed_dates[today]) {
-    //         const idAsString = String(habit.id);
-    //         const button = document.getElementById(`button-${idAsString}`);
-    //         button.disabled = true;
-    //         button.classList.add('loading');
-    //         setTimeout(() => {
-    //             summonConfetti(idAsString);
-    //             button.disabled = false;
-    //             button.classList.remove('loading');
-    //             completed_dates[today] = true
-    //             handleUpdate({ ...habit, completed_dates })
-    //         }, 1420);
-    //     } else {
-    //         delete completed_dates[today];
-    //     }
-    //
-    //     handleUpdate({ ...habit, completed_dates });
-    // };
-
     const handleComplete = async (habit) => {
         const completed_dates = habit.completed_dates || {};
 

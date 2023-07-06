@@ -12,23 +12,23 @@ export const HabitsProvider = ({ children }) => {
     const navigate = useNavigate();
 
 
-    const handleUpdate = async (updatedHabit) => {
-        const userId = auth.currentUser.uid;
-        const habitRef = doc(db, 'users', userId, 'habits', updatedHabit.id);
-
-        try {
-            await updateDoc(habitRef, {
-                habit_name: updatedHabit.habit_name,
-                habit_subtext: updatedHabit.habit_subtext,
-                repeat_option: updatedHabit.repeat_option,
-                repeat_days: updatedHabit.repeat_days,
-                repeat_times: updatedHabit.repeat_times,
-            });
-            navigate('/home');  // navigate back home only if the update was successful
-        } catch (error) {
-            console.error("Error updating habit to Firestore", error);
-        }
-    };
+    // const handleUpdate = async (updatedHabit) => {
+    //     const userId = auth.currentUser.uid;
+    //     const habitRef = doc(db, 'users', userId, 'habits', updatedHabit.id);
+    //
+    //     try {
+    //         await updateDoc(habitRef, {
+    //             habit_name: updatedHabit.habit_name,
+    //             habit_subtext: updatedHabit.habit_subtext,
+    //             repeat_option: updatedHabit.repeat_option,
+    //             repeat_days: updatedHabit.repeat_days,
+    //             repeat_times: updatedHabit.repeat_times,
+    //         });
+    //         navigate('/home');  // navigate back home only if the update was successful
+    //     } catch (error) {
+    //         console.error("Error updating habit to Firestore", error);
+    //     }
+    // };
 
     const handleUpdateCompletedExpectedDates = async (updatedHabit) => {
         const userId = auth.currentUser.uid;
@@ -72,7 +72,7 @@ export const HabitsProvider = ({ children }) => {
                 const userId = auth.currentUser.uid;
                 const userRef = doc(db, 'users', userId);
                 const habitsRef = collection(userRef, 'habits');
-                const habitsQuery = query(habitsRef, orderBy("habit_created_date"));
+                const habitsQuery = query(habitsRef, orderBy("habit_index"));
 
                 const unsubscribe = onSnapshot(habitsQuery, (habitsSnapshot) => {
                     const habitsData = habitsSnapshot.docs.map(doc => ({
@@ -95,7 +95,7 @@ export const HabitsProvider = ({ children }) => {
     }, []);
 
     return (
-        <HabitsContext.Provider value={{ habits, habitsCount, handleUpdate, handleUpdateCompletedExpectedDates, handleCombinedUpdate }}>
+        <HabitsContext.Provider value={{ habits, habitsCount, handleUpdateCompletedExpectedDates, handleCombinedUpdate }}>
             {children}
         </HabitsContext.Provider>
     );

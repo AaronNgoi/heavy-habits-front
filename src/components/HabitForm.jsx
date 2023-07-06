@@ -35,7 +35,8 @@ function HabitForm({ initialValues, onSubmit, onCancel }) {
     //
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+        let finalValue = name === "timesPerWeek" ? parseInt(value, 10) : value;
+        setFormData({ ...formData, [name]: finalValue });
     };
 
     const handleSubmit = (e) => {

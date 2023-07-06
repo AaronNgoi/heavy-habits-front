@@ -7,11 +7,21 @@ import PageWrapper from '../components/PageWrapper';
 import { db, auth } from '../firebase';
 import { collection, doc, addDoc } from "firebase/firestore";
 import { getCurrentDateInUserTimezone } from '../utils/dateUtils';
-
+import {useHabits} from "../context/HabitsContext";
 
 
 const NewHabitPage = () => {
     const navigate = useNavigate();
+    const { habits } = useHabits();
+
+    const maxIndex = habits.reduce((max, habit) => {
+        return (typeof habit.habit_index === 'number') ? Math.max(max, habit.habit_index) : max;
+    }, -1);
+
+    console.log("maxIndex", maxIndex)
+
+    const newHabitIndex = maxIndex + 1
+
 
     const handleNewHabitSubmit = async (formData) => {
         const habitData = {
@@ -23,6 +33,7 @@ const NewHabitPage = () => {
             habit_created_date: getCurrentDateInUserTimezone(),
             completed_dates: {},
             expected_dates: {},
+            habit_index: newHabitIndex,
         };
 
 

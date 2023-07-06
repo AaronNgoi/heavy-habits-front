@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
 import { sendPasswordResetEmail } from "firebase/auth";
 import BrandContainer from "../components/auth/BrandContainer";
+import BackIcon from "../assets/back_icon.svg";
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState('');
@@ -37,9 +38,26 @@ const ForgotPasswordPage = () => {
 
             <BrandContainer/>
 
+            <div className=' max-w-lg py-6 px-6 mx-auto'>
+            </div>
+
+
             <div className='sign-in-container max-w-lg py-6 px-6 mx-auto'>
                 <form onSubmit={sendResetEmail} className='standard-component flex flex-col p-8 text-lg flex flex-col gap-3 shadow-md drop-shadow-md pb-8 lg:mt-12'>
-                    <h1 className='text-3xl tracking-wide'>Forgot Password?</h1>
+
+                    <div className='flex flex-row justify-between items-center mb-2'>
+
+                        <h1 className='text-3xl tracking-wide'>Forgot Password?</h1>
+
+                    <div className="flex flex-shrink-0">
+                        <Link to="/signin" className=''>
+                            <button className="flex items-center justify-center text-lg bg-red text-FCE3BF py-2 px-2 rounded-22px active:bg-red-clicked active:scale-95 hover:bg-red-clicked">
+                                <img src= {BackIcon} alt="Back" className="h-5 w-5 inline-block"/>
+                            </button>
+                        </Link>
+                    </div>
+
+                    </div>
                     {!emailSent ? (
                         <>
                             <div className='flex flex-col my-2'>

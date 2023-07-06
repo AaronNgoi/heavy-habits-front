@@ -9,6 +9,7 @@ import { getHabitWeekDisplay } from '../helpers/getHabitWeekDisplay';
 import sumIcon from '../assets/sum_icon.svg';
 import consistencyIcon from '../assets/consistency_icon.svg';
 import { useSwipeable } from 'react-swipeable';
+import AddHabitIcon from "../assets/add_habit_icon.svg";
 
 
 function ReportMonth() {
@@ -189,6 +190,25 @@ function ReportMonth() {
             </>
         );
     }
+
+
+    if (habits.length === 0) {
+        return (
+            <div className="px-6 flex flex-col">
+                <div className="pt-3 pb-6 flex">
+                    <Link to="/habit/new" className='items-center align-middle'>
+                        <button className="flex items-center justify-center text-lg bg-brown-add-button text-FCE3BF py-2 px-4 rounded-22px border-brown-font border-2  shadow-press-brown-button active:bg-brown-button-press active:translate-y-2px active:shadow-none transition-all duration-100 hover:bg-brown-button-press">
+                            <span className="mr-2 align-middle">Add Habits</span>
+                            <img src= {AddHabitIcon} alt="Add" className="h-5 w-5 inline-block"/>
+                        </button>
+                    </Link>
+                </div>
+                <p className='mt-12 text-3xl text-center'>No habits added yet, please add new habits </p>
+            </div>
+        );
+    }
+
+
 
     return (
         <>

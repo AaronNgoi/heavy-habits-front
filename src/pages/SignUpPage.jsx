@@ -2,19 +2,25 @@ import {createUserWithEmailAndPassword} from 'firebase/auth'
 import React, { useState} from 'react';
 import {auth} from '../firebase'
 import BrandContainer from "../components/auth/BrandContainer";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import BackIcon from "../assets/back_icon.svg";
 const SignUpPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
+    const navigate = useNavigate();
+
+
     const signUp = (e) => {
         e.preventDefault();
+        console.log('submitting form'); // add this line
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential)
+                console.log('user created', userCredential); // add this line
+                // navigate('/signin')
             }).catch((error) => {
+            console.log('error occurred', error); // add this line
             let errorMessage = '';
             switch (error.code) {
                 case 'auth/email-already-in-use':
@@ -37,6 +43,8 @@ const SignUpPage = () => {
         })
     }
 
+    // aarontest@gmail.com
+
     return (
         <div className='landingWrapper'>
         <BrandContainer/>
@@ -51,7 +59,7 @@ const SignUpPage = () => {
 
                     <div className="flex flex-shrink-0">
                         <Link to="/signin" className=''>
-                            <button className="flex items-center justify-center text-lg bg-red text-FCE3BF py-2 px-2 rounded-22px active:bg-red-clicked active:scale-95 hover:bg-red-clicked">
+                            <button type="button" className="flex items-center justify-center text-lg bg-red text-FCE3BF py-2 px-2 rounded-22px active:bg-red-clicked active:scale-95 hover:bg-red-clicked">
                                 <img src= {BackIcon} alt="Back" className="h-5 w-5 inline-block"/>
                             </button>
                         </Link>

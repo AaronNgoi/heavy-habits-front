@@ -1,16 +1,74 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import {collection, doc, writeBatch, getDocs} from 'firebase/firestore';
+import { deleteUser } from 'firebase/auth';
 import {useHabits} from "../context/HabitsContext";
-import '../styles/button.css';
+import { SettingsContext } from '../context/SettingsContext';
 
+import '../styles/button.css';
 
 const Settings = () => {
     const { habitsCount } = useHabits()
+    const { soundEffects, setSoundEffects, todaysHabitsOnly, setTodaysHabitsOnly } = useContext(SettingsContext);
+    const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] = useState(false);
+
     const currentUser = auth.currentUser;
     const initial = currentUser?.email.charAt(0).toUpperCase();
 
+    const handleLogout = async () => {
+        try {
+            await auth.signOut();
+        } catch (error) {
+            console.error("Error logging out", error);
+        }
+    };
+
+    const handleDelete = async () => {
+        try {
+            if (currentUser) {
+                // Reference to the habits subcollection
+                const habitsRef = collection(db, 'users', currentUser.uid, 'habits');
+
+                // Get all habits for the current user
+                const habitSnapshot = await getDocs(habitsRef);
+                const habitDocs = habitSnapshot.docs;
+
+                // Create a batch
+                const batch = writeBatch(db);
+
+                // Delete each habit
+                for (let habitDoc of habitDocs) {
+                    batch.delete(habitDoc.ref);
+                }
+
+                // Delete the user document
+                const userDoc = doc(db, 'users', currentUser.uid);
+                batch.delete(userDoc);
+
+                // Commit the batch
+                await batch.commit();
+
+                // Delete the user account
+                await deleteUser(currentUser);
+                console.log("User account and associated Firestore document deleted successfully.");
+            } else {
+                console.log("No user is currently signed in.");
+            }
+        } catch (error) {
+            console.error("Error deleting user account and associated Firestore document:", error);
+        }
+
+        // Then close the modal
+        setShowDeleteConfirmationModal(false);
+    };
+
+    const showDeleteModal = () => {
+        setShowDeleteConfirmationModal(true);
+    };
+
     return (
+        <>
         <div className="standard-component p-8 text-lg flex flex-col gap-4 shadow-md drop-shadow-md pb-8">
             <div className='flex flex-row items-center'>
 
@@ -47,7 +105,9 @@ const Settings = () => {
                         <div className="toggle-button-cover ">
                             <div className="button-cover">
                                 <div className="button r" id="button-3">
-                                    <input type="checkbox" className="checkbox"/>
+                                    <input type="checkbox" className="checkbox"  checked={!soundEffects}
+                                           onChange={() => setSoundEffects(!soundEffects)}
+                                    />
                                     <div className="knobs"></div>
                                     <div className="layer"></div>
                                 </div>
@@ -66,7 +126,9 @@ const Settings = () => {
                         <div className="toggle-button-cover ">
                             <div className="button-cover">
                                 <div className="button r" id="button-3">
-                                    <input type="checkbox" className="checkbox"/>
+                                    <input type="checkbox" className="checkbox" checked={!todaysHabitsOnly}
+                                           onChange={() => setTodaysHabitsOnly(!todaysHabitsOnly)}
+                                    />
                                     <div className="knobs"></div>
                                     <div className="layer"></div>
                                 </div>
@@ -79,17 +141,38 @@ const Settings = () => {
             </div>
 
             <div className="flex justify-end mt-8 text-xl">
-                <button className="mr-5 hover:scale-105 transition-200">Logout</button>
-                <button className="ml-5 mr-1 hover:scale-105 transition-200">Delete</button>
+                <button className="mr-5 hover:scale-105 transition-200" onClick={handleLogout}>Logout</button>
+                <button className="ml-5 mr-1 hover:scale-105 transition-200" onClick={showDeleteModal}>Delete</button>
             </div>
 
 
 
 
 
-
-
         </div>
+
+
+
+            {showDeleteConfirmationModal &&
+                <div className="fixed inset-0 z-50 flex items-center justify-center px-6">
+                    <div className="absolute inset-0 bg-black opacity-40"></div>
+                    <div className="bg-biege-form-colour p-6 mx-auto max-w-md rounded-3xl shadow-lg z-10">
+                        <h3 className="text-2xl text-center mb-4">Are you sure?</h3>
+                        <p className="text-center mb-4 whitespace-normal font-itim">
+                            <span className="font-bold">Warning:</span> Deleting this account will permanently remove all associated data.
+                        </p>
+                        <div className="flex justify-center">
+                            <button onClick={handleDelete} className="bg-red text-FCE3BF  text-biege-form-colour py-2 px-4 rounded-3xl w-32 mr-4">
+                                Delete
+                            </button>
+                            <button onClick={() => setShowDeleteConfirmationModal(false)} className="bg-green text-FCE3BF  text-biege-form-colour py-2 px-4 rounded-3xl w-32">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </>
     );
 }
 

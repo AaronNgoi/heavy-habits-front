@@ -11,14 +11,15 @@ import tick from '../assets/tickfat.svg';
 import HabitInfoNameSubtext from "./HabitInfoNameSubtext";
 import HabitInfoMoreOptions from "./HabitInfoMoreOptions";
 import ExpandedHabitInfo from "./ExpandedHabitInfo";
+import {SettingsContext} from "../context/SettingsContext";
+import sucessSound from '../assets/success_sound.mp3';
 
 
 const HabitInfo = ({ habit, expanded }) => {
     const today = getCurrentDateInUserTimezone()
     const isCompleted = habit.completed_dates?.[today] === true;
-
-
-
+    const {soundEffects} = useContext(SettingsContext);
+    const successSound = new Audio(sucessSound);
 
     const handleComplete = async (habit) => {
         const completed_dates = habit.completed_dates || {};
@@ -35,6 +36,15 @@ const HabitInfo = ({ habit, expanded }) => {
 
             setTimeout(async () => {
                 summonConfetti(habit.id);
+
+                if (soundEffects) {
+                    try {
+                        // const successSound = new Audio(sucessSound);
+                        successSound.play().catch(() => {
+                        });
+                    } catch (error) {
+                    }
+                }
 
                 // End loading state
                 button.disabled = false;
@@ -56,7 +66,7 @@ const HabitInfo = ({ habit, expanded }) => {
                     console.error("Error updating document: ", error);
                 }
 
-            }, 1420);
+            }, 920);
 
         } else {
             delete completed_dates[today];

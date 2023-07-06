@@ -29,6 +29,7 @@ const recalculateAllExpectedAndCompletedDates = (habit) => {
                 break;
             }
 
+
             // If date is before habit created date, skip to next date without calculations
             if (compareAsc(date, habitCreatedDate) === -1) {
                 continue;

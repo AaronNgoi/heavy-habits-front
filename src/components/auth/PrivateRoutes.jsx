@@ -6,6 +6,7 @@ import PetDisplay from "../PetDisplay";
 import {HabitsProvider} from "../../context/HabitsContext";
 import HabitInfoMoreOptionsContext from "../../context/HabitInfoMoreOptionsContext";
 import BottomNav from "../BottomNav";
+import {SettingsProvider} from "../../context/SettingsContext";
 
 
 const PrivateRouteLayout = ({children}) => (
@@ -29,10 +30,12 @@ const PrivateRoutes = () => {
     return authUser
         ? (
             <HabitsProvider>
+                <SettingsProvider>
                 <HabitInfoMoreOptionsContext.Provider value={{ openedHabitMoreOptions, setOpenedHabitMoreOptions }}>
                     <canvas id="canvas" style={{position: 'fixed', top: '0px', left: '0px', pointerEvents: 'none', zIndex: 100, height: '100vh', width: '100%'}}></canvas>
                     <PrivateRouteLayout><Outlet/></PrivateRouteLayout>
                 </HabitInfoMoreOptionsContext.Provider>
+                </SettingsProvider>
             </HabitsProvider>
         )
         : (<Navigate to="/signin" state={{from:location}} replace />);

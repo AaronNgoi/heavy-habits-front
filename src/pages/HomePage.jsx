@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 // import ShrunkHabitTracker from '../ShrunkHabitTracker';
 import { useHabits } from '../context/HabitsContext';
@@ -12,11 +12,50 @@ import AddHabitIcon from '../assets/add_habit_icon.svg';
 import ShrinkIcon from '../assets/shrink.svg';
 import ExpandIcon from '../assets/expand.svg';
 import HabitInfo from "../components/HabitInfo";
+import {SettingsContext} from "../context/SettingsContext";
+import {getCurrentDateInUserTimezoneDateFormat} from "../utils/dateUtils";
+import {eachDayOfInterval, endOfWeek, format, startOfWeek} from "date-fns";
 
 
 const HomePage = () => {
     const [expanded, setExpanded] = useState(false);
-    const { habits, habitsCount } = useHabits();
+    const { habits, habitsCount } = useHabits()
+    const { todaysHabitsOnly } = useContext(SettingsContext);
+
+
+    const filteredHabits = habits.filter((habit) => {
+
+        if (!todaysHabitsOnly) {
+            return true;
+        }
+
+        const todayDate = getCurrentDateInUserTimezoneDateFormat();
+        const todayDay = format(todayDate, 'eeee')
+        const startOfThisWeek = startOfWeek(todayDate, { weekStartsOn: 1 });
+        const endOfThisWeek = endOfWeek(todayDate, { weekStartsOn: 1 });
+        const ThisWeeksDates = eachDayOfInterval({ start: startOfThisWeek, end: endOfThisWeek });
+        let FormattedDatesArray = []
+
+        for (let date of ThisWeeksDates) {
+            const dateFormatted = format(date, 'dd/MM/yyyy');
+            FormattedDatesArray.push(dateFormatted );
+        }
+
+            if (habit.repeat_days && habit.repeat_days.includes(todayDay)) {
+            return true; // Show habit if today is in repeat_days
+        }
+
+        if (habit.repeat_times && habit.completed_dates) {
+            const repeatLimit = habit.repeat_times;
+            const completedCount = FormattedDatesArray.filter((date) => habit.completed_dates[date]).length;
+            if (completedCount < repeatLimit) {
+                return true; // Show habit if completed count is less than repeat_times
+            }
+        }
+
+        return false;
+    });
+
 
     const toggleExpanded = () => {
         setExpanded(!expanded);
@@ -64,7 +103,7 @@ const HomePage = () => {
                 </div>
             </div>
             <div className="space-y-3">
-                {habits.map((habit) => (
+                {filteredHabits.map((habit) => (
                     <HabitInfo
                         key={habit.id}
                         habit={habit}

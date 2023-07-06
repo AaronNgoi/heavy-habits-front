@@ -1,4 +1,7 @@
 import React from 'react';
+import {deleteUser} from "firebase/auth";
+import {deleteDoc, doc} from "firebase/firestore";
+import {db} from "../firebase";
 
 const DeleteConfirmationModal = ({ habitName, onDelete, onClose }) => {
     return (
@@ -23,3 +26,40 @@ const DeleteConfirmationModal = ({ habitName, onDelete, onClose }) => {
 };
 
 export default DeleteConfirmationModal;
+
+
+
+
+// const handleDelete = async () => {
+//     try {
+//         if (currentUser) {
+//             await deleteUser(currentUser);
+//             console.log("User account deleted successfully.");
+//         } else {
+//             console.log("No user is currently signed in.");
+//         }
+//     } catch (error) {
+//         console.error("Error deleting user account:", error);
+//     }
+//
+//     // Then close the modal
+//     setShowDeleteConfirmationModal(false);
+// };
+//
+// const handleDelete = async () => {
+//     try {
+//         if (currentUser) {
+//             const userDoc = doc(db, 'users', currentUser.uid);
+//             await deleteDoc(userDoc);
+//             await deleteUser(currentUser);
+//             console.log("User account and associated Firestore document deleted successfully.");
+//         } else {
+//             console.log("No user is currently signed in.");
+//         }
+//     } catch (error) {
+//         console.error("Error deleting user account and associated Firestore document:", error);
+//     }
+//
+//     // Then close the modal
+//     setShowDeleteConfirmationModal(false);
+// };

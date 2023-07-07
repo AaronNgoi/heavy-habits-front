@@ -640,6 +640,14 @@ video {
   z-index: 50;
 }
 
+.z-30 {
+  z-index: 30;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
 .m-1 {
   margin: 0.25rem;
 }
@@ -751,6 +759,10 @@ video {
   margin-right: 0.5rem;
 }
 
+.mr-3 {
+  margin-right: 0.75rem;
+}
+
 .mr-4 {
   margin-right: 1rem;
 }
@@ -851,6 +863,10 @@ video {
   height: 1.5rem;
 }
 
+.h-7 {
+  height: 1.75rem;
+}
+
 .h-8 {
   height: 2rem;
 }
@@ -909,6 +925,10 @@ video {
 
 .w-6 {
   width: 1.5rem;
+}
+
+.w-7 {
+  width: 1.75rem;
 }
 
 .w-8 {
@@ -1365,6 +1385,10 @@ video {
   padding-bottom: 5rem;
 }
 
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
 .pb-5 {
   padding-bottom: 1.25rem;
 }
@@ -1403,10 +1427,6 @@ video {
 
 .pt-3 {
   padding-top: 0.75rem;
-}
-
-.pb-3 {
-  padding-bottom: 0.75rem;
 }
 
 .text-center {
@@ -1557,14 +1577,14 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-press-orange-button {
-  --tw-shadow: 0 2px 0 0 #A97A40;
+.shadow-press-green-button {
+  --tw-shadow: 0 2px 0 0 #58512D;
   --tw-shadow-colored: 0 2px 0 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-press-green-button {
-  --tw-shadow: 0 2px 0 0 #58512D;
+.shadow-press-orange-button {
+  --tw-shadow: 0 2px 0 0 #A97A40;
   --tw-shadow-colored: 0 2px 0 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
@@ -1841,6 +1861,37 @@ select {
   }
 }
 
+.custom-tooltip {
+  max-width: 300px;
+  background-color: #FACE8F !important;
+  color: #571B09 !important;
+  font-size: 18px !important;
+  border-radius: 22px !important ;
+  font-family: 'Itim', cursive !important;
+}
+
+.Toastify__toast {
+  font-family: 'Itim', cursive !important;
+  font-size: 18px !important;
+  color: #571B09 !important;
+  background-color: #FEF5E7 !important;
+  border-radius: 18px !important;
+}
+
+@media (max-width: 480px) {
+  .Toastify__toast {
+    margin: 12px !important;
+  }
+}
+
+.Toastify__progress-bar--success {
+  background: #94884B !important;
+}
+
+.Toastify__progress-bar--error {
+  background: #995046 !important;
+}
+
 /*@media (max-width: 380px) {*/
 
 /*    .week-column-6 {*/
@@ -1919,6 +1970,11 @@ select {
     background-color: rgb(117 75 46 / var(--tw-bg-opacity));
   }
 
+  .hover\:bg-dark-green:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(122 112 62 / var(--tw-bg-opacity));
+  }
+
   .hover\:bg-green-clicked:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(169 156 86 / var(--tw-bg-opacity));
@@ -1932,11 +1988,6 @@ select {
   .hover\:bg-red-clicked:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(182 104 94 / var(--tw-bg-opacity));
-  }
-
-  .hover\:bg-dark-green:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgb(122 112 62 / var(--tw-bg-opacity));
   }
 
   .hover\:underline:hover {
@@ -1986,24 +2037,14 @@ select {
   background-color: rgb(252 233 202 / var(--tw-bg-opacity));
 }
 
-.active\:bg-brown-button-press:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(117 75 46 / var(--tw-bg-opacity));
-}
-
-.active\:bg-orange-button-click:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(247 183 89 / var(--tw-bg-opacity));
-}
-
-.active\:bg-red-clicked:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(182 104 94 / var(--tw-bg-opacity));
-}
-
 .active\:bg-biege-drop-down:active {
   --tw-bg-opacity: 1;
   background-color: rgb(238 207 160 / var(--tw-bg-opacity));
+}
+
+.active\:bg-brown-button-press:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(117 75 46 / var(--tw-bg-opacity));
 }
 
 .active\:bg-dark-green:active {
@@ -2014,6 +2055,16 @@ select {
 .active\:bg-green-clicked:active {
   --tw-bg-opacity: 1;
   background-color: rgb(169 156 86 / var(--tw-bg-opacity));
+}
+
+.active\:bg-orange-button-click:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 183 89 / var(--tw-bg-opacity));
+}
+
+.active\:bg-red-clicked:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(182 104 94 / var(--tw-bg-opacity));
 }
 
 .active\:text-FCE3BF:active {

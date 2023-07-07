@@ -9,6 +9,9 @@ import AddHabitIcon from '../assets/add_habit_icon.svg';
 import {getHabitWeekDisplay} from '../helpers/getHabitWeekDisplay';
 import CircleWeekDisplay from '../utils/circleWeekDisplay';
 import { useSwipeable } from 'react-swipeable';
+import { Tooltip } from 'react-tooltip'
+import {getCurrentDateInUserTimezoneDateFormat} from "../utils/dateUtils";
+
 
 function ReportWeek() {
 
@@ -83,7 +86,7 @@ function ReportWeek() {
 
     function calculateBestStreak(habits, DisplayedWeekEnd) {
         let bestStreak = 0;
-        const today = new Date();
+        const today = getCurrentDateInUserTimezoneDateFormat();
 
         habits.forEach((habit) => {
             const completedDates = habit.completed_dates;
@@ -141,6 +144,12 @@ function ReportWeek() {
         return totalExpected === 0 ? 0 : Math.round((totalDone / totalExpected) * 100);
     }
 
+    const displayedWeekRange = isSameMonth(displayedWeekStart, displayedWeekEnd)
+        ? `${format(displayedWeekStart, 'do')} - ${format(displayedWeekEnd, "do 'of' MMM")}` // Same month
+        : `${format(displayedWeekStart, 'do MMM')} - ${format(displayedWeekEnd, "do 'of' MMM")}` // Different month
+
+    const displayedWeekEndFormatted = format(displayedWeekEnd, "do 'of' MMM")
+
 
     if (habits.length === 0) {
         return (
@@ -169,13 +178,14 @@ function ReportWeek() {
                     </div>
                 </div>
                 <div className="pt-2 pb-5 flex justify-between items-center">
-
+                    <Link to="/reportmonth" className="flex flex-row items-center align-center">
                     <button className="flex items-center justify-center text-lg bg-brown-add-button text-FCE3BF  py-2 px-4 border-brown-font border-2 rounded-22px shadow-press-brown-button active:bg-brown-button-press active:translate-y-2px active:shadow-none transition-all duration-100 hover:bg-brown-button-presss">
-                        <Link to="/reportmonth" className="flex flex-row items-center align-center">
+
                             <span className="flex">Month</span>
                             <img src= {MonthIcon} alt="Back" className="flex ml-2 h-6 w-6 "/>
-                        </Link>
+
                     </button>
+                    </Link>
                     <div>
                         <div className=" text-right">
                             <div className="text-2xl tracking-normal">
@@ -211,18 +221,21 @@ function ReportWeek() {
                 <div className="standard-component px-4 py-2 space-y-3 flex flex-col">
                     <p className=" text-xl text-center">Week in Review</p>
                     <div className="flex flex-row justify-around">
-                        <div className="flex flex-col text-center">
+                        <div className="flex flex-col text-center  tool-tooltip" data-tooltip-delay-show="600" data-tooltip-id="totaldone-tooltip" data-tooltip-content={`Total Done refers to the total number of times you have completed your habits from the ${displayedWeekRange}`}>
                             <p className="text-2xl ">{calculateTotalDoneWeekly(habits,weekDates)} </p>
                             <p className="text-sm  font-itim">Total Done</p>
+                            <Tooltip opacity='1' border='1px solid #A97A40' id='totaldone-tooltip' place="top" effect="solid" className="custom-tooltip" classNameArrow='custom-tooltip-arrow'/>
                         </div>
-                        <div className="flex flex-col items-center justify-start text-center">
+                        <div className="flex flex-col items-center justify-start text-center tool-tooltip" data-tooltip-delay-show="600" data-tooltip-id="met-tooltip" data-tooltip-content={`Met refers to the total number of times you completed the habits compared to the number of times you were supposed to complete your habits from the ${displayedWeekRange}. If your score is above 100% you're really crushing it!`}>
                             <p className="ml-2 text-2xl "> {calculatePercentageMet(habits, weekDates)}
                                 <span className="text-base font-normal self-end">%</span> </p>
                             <p className="text-sm  font-itim">Met</p>
+                            <Tooltip opacity='1' border='1px solid #A97A40' id='met-tooltip' place="top" effect="solid" className="custom-tooltip" classNameArrow='custom-tooltip-arrow'/>
                         </div>
-                        <div className="flex flex-col items-center text-center justify-start">
+                        <div className="flex flex-col items-center text-center justify-start tool-tooltip" data-tooltip-delay-show="600" data-tooltip-id="beststreak-tooltip" data-tooltip-content={`Best Streak refers to the maximum uninterrupted period you've managed to consistently stick to a specific habit amongst all your habits until the ${displayedWeekEndFormatted}. Maintain your resolve to keep your record streak intact!`}>
                             <p className="text-2xl ">{calculateBestStreak(habits, displayedWeekEnd)}</p>
                             <p className="text-sm  font-itim">Best Streak</p>
+                            <Tooltip opacity='1' border='1px solid #A97A40' id='beststreak-tooltip' place="top" effect="solid" className="custom-tooltip" classNameArrow='custom-tooltip-arrow'/>
                         </div>
                     </div>
                 </div>

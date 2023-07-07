@@ -10,6 +10,8 @@ import sumIcon from '../assets/sum_icon.svg';
 import consistencyIcon from '../assets/consistency_icon.svg';
 import { useSwipeable } from 'react-swipeable';
 import AddHabitIcon from "../assets/add_habit_icon.svg";
+import { Tooltip } from 'react-tooltip'
+
 
 
 function ReportMonth() {
@@ -17,8 +19,6 @@ function ReportMonth() {
     const [displayedMonthEnd, setDisplayedMonthEnd] = useState(endOfMonth(new Date()));
     const { habits } = useHabits();
 
-    console.log("displayedMonthStart", displayedMonthStart);
-    console.log("displayedMonthEnd", displayedMonthEnd);
 
     function nextMonth() {
         setDisplayedMonthStart(prevDate => {
@@ -41,9 +41,7 @@ function ReportMonth() {
         return dateArray.map(date => format(date, 'dd/MM/yyyy'));
     }
 
-    const monthDates = generateMonthDates(displayedMonthStart, displayedMonthEnd);
-
-    console.log("monthDates",monthDates)
+    // const monthDates = generateMonthDates(displayedMonthStart, displayedMonthEnd);
 
     function getMonthWeeks(date) {
         return getWeeksInMonth(date);
@@ -68,28 +66,7 @@ function ReportMonth() {
     };
 
 
-
-    function WeekDisplay({ habit, weekDates }) {
-        const weekDisplay = getHabitWeekDisplay(habit, weekDates);
-
-        return (
-            <div className="flex">
-                {weekDisplay.map((day, index) => (
-                    <div key={index} className="day">
-                        {day.expected_date && <span className="expected"></span>}
-                        {day.completed_date && <span className="completed"></span>}
-                    </div>
-                ))}
-            </div>
-        );
-    }
-
     const monthWeeks = getMonthWeeks(displayedMonthStart);
-    console.log("monthWeeks",monthWeeks)
-    const firstDayOfMonth = getDay(displayedMonthStart);
-    console.log("firstDayOfMonth",firstDayOfMonth)
-    const lastDayOfMonth = getDay(displayedMonthEnd);
-    console.log("lastDayOfMonth",lastDayOfMonth)
 
     const monthDateArray = [];
 
@@ -100,7 +77,6 @@ function ReportMonth() {
         monthDateArray.push(generateMonthDates(weekStart, weekEnd));
         weekStart = addDays(weekEnd, 1);  // The start of the next week is the day after the end of this week
     }
-    console.log("monthDateArray",monthDateArray);
 
     const getHabitMonthDisplay = (habit, monthDateArray) => {
         let totalExpectedDates = 0;
@@ -145,6 +121,8 @@ function ReportMonth() {
     function displayHabitMonth(habit, monthDateArray) {
         const { monthDisplay, totalExpectedDates, totalCompletedDates } = getHabitMonthDisplay(habit, monthDateArray);
 
+        const displayedMonthFormatted = format(displayedMonthStart, 'MMMM')
+
         const percentage = totalExpectedDates > 0
             ? Math.round((totalCompletedDates / totalExpectedDates) * 100)
             : 0;
@@ -177,14 +155,16 @@ function ReportMonth() {
                 })}
 
                 <div className="habit-stats flex flex-row space-x-2 mt-2 items-center justify-center">
-                    <div className=" text-sm flex flex-row items-center align-center space-x-1">
+                    <div className=" text-sm flex flex-row items-center align-center space-x-1 tool-tooltip" data-tooltip-delay-show="600" data-tooltip-id="totalcompletedmonth-tooltip" data-tooltip-content={`This refers to the total number of times you have completed your habits for the month of ${displayedMonthFormatted}`}>
                         <img src= {sumIcon} alt="sumIcon" className="flex ml-3 h-3 w-3 "/>
                         <div> {totalCompletedDates} <span className="-ml-1"> d</span></div>
+                        <Tooltip opacity='1' border='1px solid #A97A40' id='totalcompletedmonth-tooltip' place="top" effect="solid" className="custom-tooltip" classNameArrow='custom-tooltip-arrow'/>
                     </div>
 
-                    <div className=" text-sm flex flex-row items-center align-center space-x-1">
+                    <div className=" text-sm flex flex-row items-center align-center space-x-1 tool-tooltip" data-tooltip-delay-show="600" data-tooltip-id="overallconsistency-tooltip" data-tooltip-content={`This refers to the total number of times you completed the habits compared to the number of times you were supposed to complete your habits for the month of ${displayedMonthFormatted}. If your score is above 100% you're really crushing it!`}>
                         <img src= {consistencyIcon} alt="consistencyIcon" className="flex ml-3 h-3 w-3 "/>
                         <div>{percentage}%</div>
+                        <Tooltip opacity='1' border='1px solid #A97A40' id='overallconsistency-tooltip' place="top" effect="solid" className="custom-tooltip" classNameArrow='custom-tooltip-arrow'/>
                     </div>
                 </div>
             </>
@@ -220,13 +200,14 @@ function ReportMonth() {
                     </div>
                 </div>
                 <div className="pt-2 pb-2 flex justify-between items-center">
-
+                    <Link to="/reportweek" className="flex flex-row items-center align-center ">
                     <button className="flex items-center justify-center text-lg bg-brown-add-button text-FCE3BF  py-2 px-4 border-brown-font border-2 rounded-22px shadow-press-brown-button active:bg-brown-button-press active:translate-y-2px active:shadow-none transition-all duration-100 hover:bg-brown-button-presss">
-                        <Link to="/reportweek" className="flex flex-row items-center align-center ">
+
                             <span className="ml-1 flex">Week</span>
                             <img src= {WeekIcon} alt="Back" className="flex ml-3 h-6 w-6 "/>
-                        </Link>
+
                     </button>
+                </Link>
 
                     <div className=" text-right">
                         <div className="text-2xl tracking-normal">

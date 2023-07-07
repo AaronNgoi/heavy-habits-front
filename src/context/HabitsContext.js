@@ -2,7 +2,10 @@ import React, { createContext, useEffect, useState, useContext } from 'react';
 import { db, auth } from '../firebase';
 import { collection, doc, query, orderBy, updateDoc, onSnapshot } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
-
+import {getCurrentDateInUserTimezone} from "../utils/dateUtils";
+import recalculateAllExpectedAndCompletedDates from "../helpers/recalculateAllExpectedAndCompletedDates";
+import { toastSuccess } from '../helpers/toastSuccess';
+import { toastError } from '../helpers/toastError';
 
 const HabitsContext = createContext();
 
@@ -10,25 +13,8 @@ export const HabitsProvider = ({ children }) => {
     const [habits, setHabits] = useState([]);
     const [habitsCount, setHabitsCount] = useState(0);
     const navigate = useNavigate();
+    const todayDateString =  getCurrentDateInUserTimezone()
 
-
-    // const handleUpdate = async (updatedHabit) => {
-    //     const userId = auth.currentUser.uid;
-    //     const habitRef = doc(db, 'users', userId, 'habits', updatedHabit.id);
-    //
-    //     try {
-    //         await updateDoc(habitRef, {
-    //             habit_name: updatedHabit.habit_name,
-    //             habit_subtext: updatedHabit.habit_subtext,
-    //             repeat_option: updatedHabit.repeat_option,
-    //             repeat_days: updatedHabit.repeat_days,
-    //             repeat_times: updatedHabit.repeat_times,
-    //         });
-    //         navigate('/home');  // navigate back home only if the update was successful
-    //     } catch (error) {
-    //         console.error("Error updating habit to Firestore", error);
-    //     }
-    // };
 
     const handleUpdateCompletedExpectedDates = async (updatedHabit) => {
         const userId = auth.currentUser.uid;
@@ -38,8 +24,9 @@ export const HabitsProvider = ({ children }) => {
             await updateDoc(habitRef, {
                 completed_dates: updatedHabit.completed_dates,
                 expected_dates: updatedHabit.expected_dates,
+                last_updated: todayDateString,
             });
-            navigate('/home');  // navigate back home only if the update was successful
+            navigate('/home');
         } catch (error) {
             console.error("Error updating habit to Firestore", error);
         }
@@ -59,9 +46,12 @@ export const HabitsProvider = ({ children }) => {
                 completed_dates: updatedHabit.completed_dates,
                 expected_dates: updatedHabit.expected_dates,
             });
-            navigate('/home');  // navigate back home only if the update was successful
+            toastSuccess(`${updatedHabit.habit_name} has been successfully updated!`);
+            navigate('/home');
         } catch (error) {
             console.error("Error updating habit to Firestore", error);
+            toastError("Failed to update the habit. Please try again later.");
+
         }
     };
 
@@ -93,6 +83,37 @@ export const HabitsProvider = ({ children }) => {
 
         return fetchHabits();
     }, []);
+
+
+
+
+    useEffect(() => {
+        const updateHabits = async () => {
+            const updatePromises = habits.map(habit => {
+                if (habit.last_updated !== todayDateString) {
+                    const updatedExpectedAndCompletedDates = recalculateAllExpectedAndCompletedDates(habit)
+                    const updatedHabitData = {
+                        ...habit,
+                        expected_dates: updatedExpectedAndCompletedDates.expected_dates,
+                        completed_dates: updatedExpectedAndCompletedDates.completed_dates
+                    }
+
+                    return handleUpdateCompletedExpectedDates(updatedHabitData);
+                }
+                return Promise.resolve();
+            });
+
+            try {
+                await Promise.all(updatePromises);
+            } catch (error) {
+                console.error("Error updating habits", error);
+            }
+        };
+
+        updateHabits().catch(error => console.error("Error in updateHabits", error));
+    }, [habits, todayDateString, handleUpdateCompletedExpectedDates]);
+
+
 
     return (
         <HabitsContext.Provider value={{ habits, habitsCount, handleUpdateCompletedExpectedDates, handleCombinedUpdate }}>

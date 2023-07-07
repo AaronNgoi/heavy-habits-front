@@ -5,6 +5,8 @@ import {collection, doc, writeBatch, getDocs} from 'firebase/firestore';
 import { deleteUser } from 'firebase/auth';
 import {useHabits} from "../context/HabitsContext";
 import { SettingsContext } from '../context/SettingsContext';
+import { Tooltip } from 'react-tooltip'
+
 
 import '../styles/button.css';
 
@@ -121,8 +123,10 @@ const Settings = () => {
 
                 <div className="flex items-center w-full mt-3">
                     <label className='flex justify-between w-full items-center'>
-                        Today's Habits Only
-
+                        <div className="flex justify-center tool-tooltip" data-tooltip-delay-show="600" data-tooltip-id="todays-habits-tooltip" data-tooltip-content="Selecting this option filters your view to only include the habits due for completion today. If a habit, designed to be fulfilled 3 times a week, has been accomplished 3 times within the week, it disappears until the following Monday. Likewise, habits designated for Tuesdays will only appear on Tuesdays.">
+                            <span>Expected Habits Only</span>
+                            <Tooltip id="todays-habits-tooltip" place="top" effect="solid" className="custom-tooltip" classNameArrow="custom-tooltip-arrow" border='1px solid #A97A40' opacity='1'/>
+                        </div>
                         <div className="toggle-button-cover ">
                             <div className="button-cover">
                                 <div className="button r" id="button-3">

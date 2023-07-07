@@ -20,5 +20,3 @@ function calculateConsistency(habit) {
 }
 
 export default calculateConsistency;
-
-// ToolTip "Consistency measures how consistently you've kept up with your habit since you've started: {habit.created_date}. It's based on the number of times you've completed the habit compared to the number of times you were supposed to complete it. If your score is above 100%, you're really crushing it!

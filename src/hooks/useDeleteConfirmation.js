@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { doc, deleteDoc } from "firebase/firestore";
 import { db, auth } from '../firebase';
+import { toast } from 'react-toastify';
+import {toastError} from "../helpers/toastError";
+import {toastSuccess} from "../helpers/toastSuccess";
 
-const useDeleteConfirmation = (habitId) => {
+
+const useDeleteConfirmation = (habitId, habitName) => {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     const handleDeleteModalClick = () => {
@@ -16,9 +20,12 @@ const useDeleteConfirmation = (habitId) => {
             const habitRef = doc(userRef, 'habits', habitId);
 
             await deleteDoc(habitRef);
+            toastSuccess(`${habitName} has been successfully deleted!`);
 
         } catch (error) {
-            console.error("Error deleting habit", error);
+            console.error(`Error deleting ${habitName}`);
+            toastError(`Failed to delete ${habitName}. Please try again later.`);
+
         }
         setShowDeleteConfirmation(false);
     };

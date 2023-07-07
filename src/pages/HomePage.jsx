@@ -15,12 +15,18 @@ import HabitInfo from "../components/HabitInfo";
 import {SettingsContext} from "../context/SettingsContext";
 import {getCurrentDateInUserTimezoneDateFormat} from "../utils/dateUtils";
 import {eachDayOfInterval, endOfWeek, format, startOfWeek} from "date-fns";
+import recalculateAllExpectedAndCompletedDates from "../helpers/recalculateAllExpectedAndCompletedDates";
+
+
 
 
 const HomePage = () => {
     const [expanded, setExpanded] = useState(false);
     const { habits, habitsCount } = useHabits()
     const { todaysHabitsOnly } = useContext(SettingsContext);
+
+
+
 
 
     const filteredHabits = habits.filter((habit) => {

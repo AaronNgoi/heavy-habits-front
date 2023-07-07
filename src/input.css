@@ -218,6 +218,37 @@ select {
     }
 }
 
+.custom-tooltip {
+    max-width: 300px;
+    background-color: #FACE8F !important;
+    color: #571B09 !important;
+    font-size: 18px !important;
+    border-radius: 22px !important ;
+    font-family: 'Itim', cursive !important;
+}
+
+.Toastify__toast {
+    font-family: 'Itim', cursive !important;
+    font-size: 18px !important;
+    color: #571B09 !important;
+    background-color: #FEF5E7 !important;
+    border-radius: 18px !important;
+}
+
+@media (max-width: 480px) {
+    .Toastify__toast {
+        margin: 12px !important;
+    }
+
+}
+
+.Toastify__progress-bar--success {
+    background: #94884B !important;
+}
+
+.Toastify__progress-bar--error {
+    background: #995046 !important;
+}
 
 
 /*@media (max-width: 380px) {*/

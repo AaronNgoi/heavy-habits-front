@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { getCurrentDateInUserTimezoneDateFormat } from '../utils/dateUtils';
 import recalculateHistoricalWeeklyExpectedDates from '../helpers/recalculateHistoricalWeeklyExpectedDates';
 import {addDays, format, parse} from 'date-fns';
-
+import { toastSuccess } from '../helpers/toastSuccess';
+import { toastError } from '../helpers/toastError';
 
 const AddHistoricalRecord = ({ habitId }) => {
     const { habits, handleUpdateCompletedExpectedDates } = useHabits();
@@ -33,10 +34,7 @@ const AddHistoricalRecord = ({ habitId }) => {
 
 
     const handleSubmit = () => {
-        console.log("AddHistoricalRecord handleSubmit called");
         const formattedDate = format(new Date(selectedDate), 'dd/MM/yyyy');
-        console.log("formattedDate", formattedDate);
-
         // Check if the date is not already completed
         if (!habit.completed_dates || habit.completed_dates[formattedDate] !== true) {
             const updatedHabit = {
@@ -52,9 +50,9 @@ const AddHistoricalRecord = ({ habitId }) => {
             updatedHabit.expected_dates = updatedExpectedDates.expected_dates;
 
             handleUpdateCompletedExpectedDates(updatedHabit);
-            setSuccessMessage(`Record has been added on ${displaySelectedDate}`);
+            toastSuccess(`${habit.habit_name} has been marked as completed on ${displaySelectedDate}`);
         } else {
-            setSuccessMessage(`${displaySelectedDate} was already marked as completed`);
+            toastError(`${displaySelectedDate} was already marked as completed for ${habit.habit_name}`);
         }
         navigate('/home');
     };

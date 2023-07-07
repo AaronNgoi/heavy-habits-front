@@ -18,6 +18,10 @@ import ReportWeekPage from "./pages/ReportWeekPage";
 import ReportMonthPage from "./pages/ReportMonthPage";
 import SettingsPage from "./pages/SettingsPage";
 import ReorderHabitsPage from './pages/ReorderHabitsPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 function App() {
 
@@ -48,6 +52,7 @@ function App() {
 
                   </Route>
               </Routes>
+                <ToastContainer toastClassName="Toastify__toast"/>
             </div>
           </Router>
          </AuthProvider>

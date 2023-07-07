@@ -34,7 +34,7 @@ const HabitInfoMoreOptions = ({ habit }) => {
     handleDeleteModalClick,
     handleDeleteConfirm,
     handleDeleteModalClose,
-  } = useDeleteConfirmation(habit.id);
+  } = useDeleteConfirmation(habit.id, habit.habit_name);
 
     useEffect(() => {
 const handleClickOutside = (event) => {
@@ -63,7 +63,7 @@ const handleClickOutside = (event) => {
         <img src={OptionsIcon} alt="More options" className="ml-1 h-9 w-9 hover:scale-105 active:scale-110" />
       </button>
       {openedHabitMoreOptions === habit.id && (
-        <div className="absolute left-1 top-12 z-10">
+        <div className="absolute left-1 top-12 z-30">
         <div className="px-1 py-1 rounded-22px bg-biege-drop-down shadow-md drop-shadow-md  flex flex-col border-2 border-brown-border">
           <Link to={`/habit/${habit.id}/edit`} className="flex items-center rounded-2xl hover:bg-biege-display active:bg-biege-display">
             <button className="ml-2 mr-2 my-3 px-2 inline-flex items-center ">

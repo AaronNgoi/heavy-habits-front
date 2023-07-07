@@ -8,6 +8,8 @@ import { db, auth } from '../firebase';
 import { collection, doc, addDoc } from "firebase/firestore";
 import { getCurrentDateInUserTimezone } from '../utils/dateUtils';
 import {useHabits} from "../context/HabitsContext";
+import {toastError} from "../helpers/toastError";
+import {toastSuccess} from "../helpers/toastSuccess";
 
 
 const NewHabitPage = () => {
@@ -17,8 +19,6 @@ const NewHabitPage = () => {
     const maxIndex = habits.reduce((max, habit) => {
         return (typeof habit.habit_index === 'number') ? Math.max(max, habit.habit_index) : max;
     }, -1);
-
-    console.log("maxIndex", maxIndex)
 
     const newHabitIndex = maxIndex + 1
 
@@ -34,6 +34,7 @@ const NewHabitPage = () => {
             completed_dates: {},
             expected_dates: {},
             habit_index: newHabitIndex,
+            last_updated: getCurrentDateInUserTimezone(),
         };
 
 
@@ -42,9 +43,10 @@ const NewHabitPage = () => {
             const userRef = doc(db, 'users', userId);
             const habitRef = collection(userRef, 'habits');
             await addDoc(habitRef, habitData);
-            navigate('/');
+            toastSuccess(`${habitData.habit_name} successfully added!`);
         } catch (error) {
             console.error("Error writing new habit to Firestore", error);
+            toastError("Failed to add the habit. Please try again later.");
         }
 
         navigate('/home');

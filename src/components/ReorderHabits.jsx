@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { db, auth } from '../firebase';
 import {doc, updateDoc} from 'firebase/firestore';
-
+import { toast} from "react-toastify";
+import {toastSuccess} from "../helpers/toastSuccess";
+import {toastError} from "../helpers/toastError";
 
 function ReorderHabits() {
     const { habits } = useHabits();
@@ -49,9 +51,11 @@ function ReorderHabits() {
                 const habitRef = doc(db, 'users', auth.currentUser.uid, 'habits', habit.id);
                 return updateDoc(habitRef, { habit_index: index });
             }));
+            toastSuccess('Habits have been successfully re-ordered!');
             navigate('/home');
         } catch (error) {
             console.error("Error updating habit indexes in Firestore", error);
+            toastError('Habits could not be re-ordered, please try again later.');
         }
     };
 

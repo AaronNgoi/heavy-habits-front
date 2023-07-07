@@ -6,6 +6,7 @@ import { deleteUser } from 'firebase/auth';
 import {useHabits} from "../context/HabitsContext";
 import { SettingsContext } from '../context/SettingsContext';
 import { Tooltip } from 'react-tooltip'
+import { toastSuccess } from '../helpers/toastSuccess';
 
 
 import '../styles/button.css';
@@ -21,6 +22,7 @@ const Settings = () => {
     const handleLogout = async () => {
         try {
             await auth.signOut();
+            toastSuccess('You have successfully logged out! Hope to see you again :)')
         } catch (error) {
             console.error("Error logging out", error);
         }
@@ -54,6 +56,7 @@ const Settings = () => {
                 // Delete the user account
                 await deleteUser(currentUser);
                 console.log("User account and associated Firestore document deleted successfully.");
+                toastSuccess('We\'ve successfully deleted your account and any associated data.')
             } else {
                 console.log("No user is currently signed in.");
             }

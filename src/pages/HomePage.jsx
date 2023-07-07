@@ -109,6 +109,10 @@ const HomePage = () => {
                 </div>
             </div>
             <div className="space-y-3">
+
+                {habits.length === 0 && (<p className='mt-12 text-3xl text-center'>No habits added yet, please add new habits </p>)}
+
+
                 {filteredHabits.map((habit) => (
                     <HabitInfo
                         key={habit.id}

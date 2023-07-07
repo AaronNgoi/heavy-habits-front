@@ -10,7 +10,7 @@ import {SettingsProvider} from "../../context/SettingsContext";
 
 
 const PrivateRouteLayout = ({children}) => (
-    <div className='bg-biege-background h-full min-h-screen'>
+    <div className='bg-biege-background h-full min-h-screen border-b-2 border-brown-header-bottom '>
         <div className="bg-brown-pet-bg relative h-44"> </div>
         <PetDisplay/>
         {children}

@@ -14,7 +14,7 @@ const SignInPage = () => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential)
+                // console.log(userCredential)
             }).catch((error) => {
             let errorMessage = '';
             switch (error.code) {
@@ -40,10 +40,10 @@ const SignInPage = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
     };
 

@@ -656,6 +656,10 @@ video {
   margin: 1px;
 }
 
+.m-10 {
+  margin: 2.5rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -1211,6 +1215,10 @@ video {
   border-top-width: 2px;
 }
 
+.border-b {
+  border-bottom-width: 1px;
+}
+
 .border-brown-add-button {
   --tw-border-opacity: 1;
   border-color: rgb(161 104 64 / var(--tw-border-opacity));
@@ -1316,6 +1324,10 @@ video {
 
 .p-8 {
   padding: 2rem;
+}
+
+.p-10 {
+  padding: 2.5rem;
 }
 
 .px-1 {

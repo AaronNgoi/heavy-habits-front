@@ -61,7 +61,6 @@ const HabitInfo = ({ habit, expanded }) => {
                     await updateDoc(habitRef, {
                         completed_dates: completed_dates
                     });
-                    console.log("Document successfully updated!");
                 } catch (error) {
                     console.error("Error updating document: ", error);
                 }
@@ -79,7 +78,6 @@ const HabitInfo = ({ habit, expanded }) => {
                 await updateDoc(habitRef, {
                     completed_dates: completed_dates
                 });
-                console.log("Document successfully updated!");
             } catch (error) {
                 console.error("Error updating document: ", error);
             }

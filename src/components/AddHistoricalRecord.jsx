@@ -14,7 +14,6 @@ const AddHistoricalRecord = ({ habitId }) => {
     const { habits, handleUpdateCompletedExpectedDates } = useHabits();
     const yesterday = addDays(getCurrentDateInUserTimezoneDateFormat(), -1);
     const [selectedDate, setSelectedDate] = useState(yesterday);
-    const [successMessage, setSuccessMessage] = useState(null);
     const navigate = useNavigate();
     const habit = habits.find((h) => h.id === habitId);
 
@@ -65,7 +64,7 @@ const AddHistoricalRecord = ({ habitId }) => {
                 <img src={AddHistoricalRecordIcon} alt="Add Record" />
                 <p className="ml-4">Add Historical Record</p>
             </div>
-            <p className='font-itim'> You're marking <span className='font-semibold'>{habit.habit_name}</span> as completed on the <span className='font-semibold'>{displaySelectedDate}</span>. <br className='mt-2'/> Please note that records can only be added for dates following the habits creation: <span className='font-semibold'>{displayHabitCreatedDate}</span> .</p>
+            <p className='font-itim'> You're marking <span className='font-semibold'>{habit.habit_name}</span> as completed on the <span className='font-semibold'>{displaySelectedDate}</span>. <br className='mt-2'/> Please note that records can only be added for dates following this habits creation: <span className='font-semibold'>{displayHabitCreatedDate}</span> .</p>
             <p className='-mb-2'> When?</p>
             <DatePicker
                 selected={selectedDate}

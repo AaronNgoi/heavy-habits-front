@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import MascotSmallIcon from "../../assets/MascotSmallIcon.webp";
-import AuthDetails from "./AuthDetails";
 
 
 const BrandContainer = () => {
@@ -20,11 +19,6 @@ const BrandContainer = () => {
 
                 <div className='h-12 w-12'>  </div>
             </div>
-            <div className='mt-6 flex items-center justify-center text-center'>
-                <AuthDetails/>
-            </div>
-
-
         </div>
     )
 }

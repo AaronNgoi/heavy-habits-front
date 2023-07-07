@@ -10,7 +10,6 @@ import ErrorPage404 from "./pages/ErrorPage404";
 import HomePage from './pages/HomePage';
 import PrivateRoutes from "./components/auth/PrivateRoutes";
 import {AuthProvider} from "./context/AuthContext";
-import LoadingPage from "./pages/LoadingPage";
 import NewHabitPage from "./pages/NewHabitPage";
 import EditHabitPage from "./pages/EditHabitPage";
 import AddHistoricalRecordPage from "./pages/AddHistoricalRecordPage";
@@ -20,24 +19,31 @@ import SettingsPage from "./pages/SettingsPage";
 import ReorderHabitsPage from './pages/ReorderHabitsPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PublicRoutes from "./components/auth/PublicRoutes";
+
 
 
 
 function App() {
 
 
+
+
   return (
          <AuthProvider>
           <Router>
             <div className="App">
+
               <Routes>
                   {/*Public Pages*/}
-                  <Route exact path="/" element={<LandingPage/>} />
-                  <Route path="/signin" element={<SignInPage/>} />
-                  <Route path="/signup" element={<SignUpPage/>} />
-                  <Route path="/forgotpassword" element={<ForgotPasswordPage/>} />
-                  <Route path='/loading' element ={<LoadingPage/>} />
-                  <Route path='*' element ={<ErrorPage404/>} />
+                  <Route element ={<PublicRoutes/>}>
+                      <Route exact path="/" element={<LandingPage/>} />
+                      <Route path="/signin" element={<SignInPage/>} />
+                      <Route path="/signup" element={<SignUpPage/>} />
+                      <Route path="/forgotpassword" element={<ForgotPasswordPage/>} />
+                      {/*<Route path='/loading' element ={<LoadingPage/>} />*/}
+                      <Route path='*' element ={<ErrorPage404/>} />
+                 </Route>
                 {/*Private Pages*/}
                   <Route element={<PrivateRoutes/>}>
                       <Route path="/home" element={<HomePage/>} />
@@ -48,8 +54,7 @@ function App() {
                       <Route path="/reportMonth" element={<ReportMonthPage />} />
                       <Route path="/settings" element={<SettingsPage/>} />
                       <Route path="/reorderHabits" element={<ReorderHabitsPage />} />
-
-
+                      <Route path='*' element ={<ErrorPage404/>} />
                   </Route>
               </Routes>
                 <ToastContainer toastClassName="Toastify__toast"/>

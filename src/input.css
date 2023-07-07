@@ -33,6 +33,10 @@ select {
     color: #571B09;
 }
 
+.habitNameClear {
+    top: 0.375rem;
+    right: 0.5rem;
+}
 
 .landingWrapper::before {
     content: '';
@@ -225,6 +229,7 @@ select {
     font-size: 18px !important;
     border-radius: 22px !important ;
     font-family: 'Itim', cursive !important;
+    z-index: 1000 !important;
 }
 
 .Toastify__toast {

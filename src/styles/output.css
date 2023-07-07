@@ -656,10 +656,6 @@ video {
   margin: 1px;
 }
 
-.m-10 {
-  margin: 2.5rem;
-}
-
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -1186,6 +1182,10 @@ video {
   border-radius: 9999px;
 }
 
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
 .rounded-t-36px {
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
@@ -1213,10 +1213,6 @@ video {
 
 .border-t-2 {
   border-top-width: 2px;
-}
-
-.border-b {
-  border-bottom-width: 1px;
 }
 
 .border-brown-add-button {
@@ -1324,10 +1320,6 @@ video {
 
 .p-8 {
   padding: 2rem;
-}
-
-.p-10 {
-  padding: 2.5rem;
 }
 
 .px-1 {
@@ -1657,6 +1649,11 @@ select {
   color: #571B09;
 }
 
+.habitNameClear {
+  top: 0.375rem;
+  right: 0.5rem;
+}
+
 .landingWrapper::before {
   content: '';
   position: absolute;
@@ -1876,6 +1873,7 @@ select {
   font-size: 18px !important;
   border-radius: 22px !important ;
   font-family: 'Itim', cursive !important;
+  z-index: 1000 !important;
 }
 
 .Toastify__toast {
@@ -2087,66 +2085,8 @@ select {
 }
 
 @media (min-width: 1024px) {
-  .lg\:inset-x-0 {
-    left: 0px;
-    right: 0px;
-  }
-
-  .lg\:inset-y-0 {
-    top: 0px;
-    bottom: 0px;
-  }
-
-  .lg\:bottom-auto {
-    bottom: auto;
-  }
-
-  .lg\:left-0 {
-    left: 0px;
-  }
-
-  .lg\:my-2 {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
   .lg\:mt-12 {
     margin-top: 3rem;
-  }
-
-  .lg\:h-screen {
-    height: 100vh;
-  }
-
-  .lg\:w-16 {
-    width: 4rem;
-  }
-
-  .lg\:flex-col {
-    flex-direction: column;
-  }
-
-  .lg\:justify-start {
-    justify-content: flex-start;
-  }
-
-  .lg\:rounded-t-none {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-  }
-
-  .lg\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .lg\:py-4 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
-  .lg\:pb-0 {
-    padding-bottom: 0px;
   }
 
   .lg\:pt-36 {

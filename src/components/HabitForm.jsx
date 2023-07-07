@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import tick from "../assets/tickfat.svg";
+import close from "../assets/close.svg";
+
 
 function HabitForm({ initialValues, onSubmit, onCancel }) {
     const [formData, setFormData] = useState({
@@ -46,16 +48,40 @@ function HabitForm({ initialValues, onSubmit, onCancel }) {
 
     const { habitName, repeatOption, timesPerWeek, tickedDays, habitSubtext } = formData;
 
+    const habitSuggestions = [
+        "Exercise 🏋️‍♂️",
+        "Read 📚",
+        "Drink Water 💧",
+        "Eat Healthy 🥗",
+        "Meditate 🧘‍♂️",
+        "Call a friend 📞",
+        "No Alcohol ❌🍷"
+    ];
+
+
+
 
     return (
         <form onSubmit={handleSubmit} className="standard-component p-8 text-lg flex flex-col gap-4 shadow-md drop-shadow-md pb-8">
-            <div  className="flex items-center justify-between">
+            <div  className="flex items-center flex-col">
                 <label className="w-full">
                     Habit Name:
-                    <div className="input-wrapper flex-1 w-full">
-                        <input type="text" name="habitName" value={habitName} onChange={handleChange} className="w-full text-base font-normal font-itim pl-4" required/>
+                    <div className="relative input-wrapper flex-1 w-full">
+                        <input type="text" name="habitName" value={habitName} onChange={handleChange} className="relative w-full text-base font-normal font-itim pl-4" required/>
+                        {!onCancel && habitName &&
+                            <img src={close} alt="Close Icon" className="habitNameClear h-6 w-6 absolute cursor-pointer" onClick={() => handleChange({ target: { name: 'habitName', value: '' } })} />
+                        }
                     </div>
                 </label>
+                {!onCancel && habitName === "" &&
+                    <div className="flex flex-wrap py-2">
+                        {habitSuggestions.map((habitSuggestion, index) =>
+                        <div className='px-1 mr-1 mt-1 font-itim text-sm border rounded-lg border-brown-border bg-orange-button hover:bg-orange-button-click cursor-pointer' key={index} onClick={() => { handleChange({ target: { name: 'habitName', value: habitSuggestion } });}}>
+                            {habitSuggestion}
+                        </div>
+                        )}
+                    </div>
+                }
             </div>
             <div  className="flex items-center">
                 <label className="mr-4">

@@ -22,7 +22,7 @@ const Settings = () => {
     const handleLogout = async () => {
         try {
             await auth.signOut();
-            toastSuccess('You have successfully logged out! Hope to see you again :)')
+            toastSuccess('You have successfully logged out! Hope to see you again 👋')
         } catch (error) {
             console.error("Error logging out", error);
         }
@@ -103,7 +103,7 @@ const Settings = () => {
 
 
                 <div className="flex items-center w-full mt-4">
-                    <label className='flex justify-between w-full items-center'>
+                    <div className='flex justify-between w-full items-center'>
                         <span>Sound Effects</span>
 
 
@@ -120,31 +120,31 @@ const Settings = () => {
                         </div>
 
 
-                    </label>
+                    </div>
                 </div>
 
 
-                <div className="flex items-center w-full mt-3">
-                    <label className='flex justify-between w-full items-center'>
-                        <div className="flex justify-center tool-tooltip" data-tooltip-delay-show="600" data-tooltip-id="todays-habits-tooltip" data-tooltip-content="Selecting this option filters your view to only include the habits due for completion today. If a habit, designed to be fulfilled 3 times a week, has been accomplished 3 times within the week, it disappears until the following Monday. Likewise, habits designated for Tuesdays will only appear on Tuesdays.">
-                            <span>Expected Habits Only</span>
-                            <Tooltip id="todays-habits-tooltip" place="top" effect="solid" className="custom-tooltip" classNameArrow="custom-tooltip-arrow" border='1px solid #A97A40' opacity='1'/>
-                        </div>
-                        <div className="toggle-button-cover ">
-                            <div className="button-cover">
-                                <div className="button r" id="button-3">
-                                    <input type="checkbox" className="checkbox" checked={!todaysHabitsOnly}
-                                           onChange={() => setTodaysHabitsOnly(!todaysHabitsOnly)}
-                                    />
-                                    <div className="knobs"></div>
-                                    <div className="layer"></div>
-                                </div>
+                <div className="flex items-center w-full mt-3 justify-between">
+                    <div className="flex justify-center tool-tooltip" data-tooltip-delay-show="600" data-tooltip-id="todays-habits-tooltip" data-tooltip-content="Filters your home view to only include habits due for completion today. If a habit, designed to be fulfilled 3 times a week, has been accomplished 3 times within the week, it disappears until the following Monday. Likewise, habits designated for Tuesdays will only appear on Tuesdays.">
+                        <span>Expected Habits Only - ℹ️</span>
+                        <Tooltip id="todays-habits-tooltip" place="top" effect="solid" className="custom-tooltip" classNameArrow="custom-tooltip-arrow" border="1px solid #A97A40" opacity="1" />
+                    </div>
+                    <div className="toggle-button-cover">
+                        <div className="button-cover">
+                            <div className="button r" id="button-3">
+                                <input
+                                    type="checkbox"
+                                    className="checkbox"
+                                    checked={!todaysHabitsOnly}
+                                    onChange={() => setTodaysHabitsOnly(!todaysHabitsOnly)}
+                                />
+                                <div className="knobs"></div>
+                                <div className="layer"></div>
                             </div>
                         </div>
-
-
-                    </label>
+                    </div>
                 </div>
+
             </div>
 
             <div className="flex justify-end mt-8 text-xl">

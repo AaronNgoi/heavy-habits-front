@@ -85,14 +85,8 @@ const SignInPage = () => {
                 </Link>
 
                 <p className='text-center mt-4 font-itim hover:underline cursor-pointer'>
-                    Or click here for a quick demo account
+                    Explore Demo Account
                 </p>
-
-                <Link to="/home">
-                    <p className='text-center mt-4 font-itim hover:underline cursor-pointer'>
-                        Logged In? Click here to go to Home
-                    </p>
-                </Link>
 
             </form>
         </div>

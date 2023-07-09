@@ -6,7 +6,6 @@ import {AuthContext} from "../../context/AuthContext";
 
 const PublicRouteLayout = ({ children }) => (
     <div className=''>
-        {/* Add any other common elements for your public routes here */}
         {children}
     </div>
 )

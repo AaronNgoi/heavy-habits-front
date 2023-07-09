@@ -49,13 +49,13 @@ function HabitForm({ initialValues, onSubmit, onCancel }) {
     const { habitName, repeatOption, timesPerWeek, tickedDays, habitSubtext } = formData;
 
     const habitSuggestions = [
-        "Exercise 🏋️‍♂️",
+        "Workout 💪",
         "Read 📚",
         "Drink Water 💧",
         "Eat Healthy 🥗",
-        "Meditate 🧘‍♂️",
-        "Call a friend 📞",
-        "No Alcohol ❌🍷"
+        "Meditate 🧘🏻‍♀️",
+        "Call a friend 📲",
+        "No Alcohol ️🙅‍♂️🍷"
     ];
 
 

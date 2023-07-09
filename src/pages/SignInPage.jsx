@@ -35,6 +35,21 @@ const SignInPage = () => {
         })
     }
 
+    const signInDemo = () => {
+        const demoEmail = "HeavyHabitsDemoUser@gmail.com";
+        const demoPassword = "heavyhabitspassword10!*";
+
+        signInWithEmailAndPassword(auth, demoEmail, demoPassword)
+            .then((userCredential) => {
+                // console.log(userCredential)
+                // Redirect to demo dashboard or wherever you want to take the user after sign in
+            })
+            .catch((error) => {
+                // Handle errors here, probably want to display a user friendly error message
+                console.error("Demo account sign in error:", error);
+            });
+    };
+
     const signInWithGoogle = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
@@ -84,7 +99,7 @@ const SignInPage = () => {
                 </p>
                 </Link>
 
-                <p className='text-center mt-4 font-itim hover:underline cursor-pointer'>
+                <p className='text-center mt-4 font-itim hover:underline cursor-pointer' onClick={signInDemo}>
                     Explore Demo Account
                 </p>
 

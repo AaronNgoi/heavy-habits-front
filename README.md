@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Heavy Habits
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Heavy Habits is a user-friendly web app designed to make habit tracking and review effortless. This intuitive and aesthetically pleasing tool allows users to effortlessly manage their habits - add, edit, delete, and track habits for different completion frequencies. Heavy Habits was created to fill the gap of complexity and inconvenience observed in existing options.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Add, edit, delete, and track habits based on different completion frequencies.
+- Retroactive marking of habits as completed.
+- Visually appealing progress tracking and statistics to keep users motivated.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+If you want to run a local copy of this project or contribute to its development, please follow these steps:
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Make sure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your machine.
+- You will also need an account with [Firebase](https://firebase.google.com/).
 
-### `npm run build`
+### Cloning the Repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone this repository to your local machine using the following command:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/AaronNgoi/heavy-habits-front.git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installing Dependencies
 
-### `npm run eject`
+Navigate into the cloned repository's directory and install the necessary packages by running:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Setting Up Firebase
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Set up a new project in your Firebase account.
+2. Enable the necessary services (e.g., Firestore, Authentication).
+3. Replace the Firebase config in this project's code with the config for your new Firebase project.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Running the Application Locally
 
-## Learn More
+You can run the application on your local machine with the following command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+After following these steps, you should be able to see and interact with the app in your local development environment.
+```
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Usage
 
-### Analyzing the Bundle Size
+Please refer to video below for how to use Heavy Habits
+https://www.loom.com/share/c01e2230e3904f01ac4144a686ccaeaa
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Technologies
 
-### Advanced Configuration
+- React
+- Tailwind CSS
+- Firebase
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Dependencies
 
-### Deployment
+- React Swipeable
+- React Toastify
+- React Tooltip
+- React Beautiful Drag and Drop
+- React Datepicker
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Heavy Habits is a work in progress, and we invite collaboration and feedback. Your feedback is invaluable, and for those interested in contributing, please reach out. Together, we can make habit tracking effortless and enjoyable.

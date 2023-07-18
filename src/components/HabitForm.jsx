@@ -55,7 +55,7 @@ function HabitForm({ initialValues, onSubmit, onCancel }) {
         "Eat Healthy 🥗",
         "Meditate 🧘🏻‍♀️",
         "Call a friend 📲",
-        "No Alcohol ️🙅‍♂️🍷"
+        "No Alcohol 🙅‍♂️🍷"
     ];
 
 
